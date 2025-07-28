@@ -1,0 +1,9 @@
+# variable de entorno
+.env
+
+# cache
+cache/images/*
+
+
+# tmp
+tmp/*
