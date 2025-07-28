@@ -17,7 +17,7 @@ Un servidor de optimización de imágenes en tiempo real construido con Go que p
 
 ```bash
 git clone <repository-url>
-cd api-rest-#1
+cd serve-img-optimized
 go mod tidy
 go run main.go
 ```
@@ -63,7 +63,7 @@ curl -H "Authorization: Bearer your-api-token" \
 curl -H "Authorization: Bearer your-api-token" \
   "http://localhost:4000/api/image/q_75/example.com/picture.webp"
 
-# Ruta sin autenticación (compatibilidad)
+# Ruta sin autenticación (Desactivado) Habilitar para Testing Only
 http://localhost:4000/w_400,q_90/example.com/image.jpg
 ```
 
@@ -75,7 +75,7 @@ http://localhost:4000/w_400,q_90/example.com/image.jpg
 | `/api/info?url=[url]` | GET | ✅ Requerida | Obtiene información de una imagen |
 | `/api/cache/stats` | GET | ✅ Requerida | Estadísticas del sistema de caché |
 | `/api/health` | GET | ✅ Requerida | Estado del servidor |
-| `/*` | GET | ❌ No requerida | Optimización sin autenticación (compatibilidad) | Testing Only
+| `/*` | GET | ❌ No requerida | Optimización sin autenticación (Desactivado) | Testing Only
 
 ### 🔐 Autenticación
 
