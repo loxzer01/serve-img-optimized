@@ -86,13 +86,19 @@ func (pp *ParamsParser) ParseURLParams(r *http.Request) (*ImageParams, error) {
 
 // parseImageURL procesa y valida la URL de la imagen
 func (pp *ParamsParser) parseImageURL(rawURL string) (string, error) {
+	// Decodificar URL encoding
+	decodedURL, err := url.QueryUnescape(rawURL)
+	if err != nil {
+		return "", fmt.Errorf("failed to decode URL: %v", err)
+	}
+
 	// Agregar protocolo si no existe
-	if !strings.HasPrefix(rawURL, "http://") && !strings.HasPrefix(rawURL, "https://") {
-		rawURL = "https://" + rawURL
+	if !strings.HasPrefix(decodedURL, "http://") && !strings.HasPrefix(decodedURL, "https://") {
+		decodedURL = "https://" + decodedURL
 	}
 
 	// Validar URL
-	parsedURL, err := url.Parse(rawURL)
+	parsedURL, err := url.Parse(decodedURL)
 	if err != nil {
 		return "", fmt.Errorf("invalid image URL: %v", err)
 	}
